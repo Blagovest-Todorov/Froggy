@@ -1,47 +1,40 @@
-﻿using System;
-using System.Text;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Test
+namespace StackProblem
 {
-          
-
-    class IsTest
+    class Program
     {
-        class Class1 
-        {
-        
-        }
-        class Class2 
-        {
-          
-        }
-        
         static void Main(string[] args)
         {
-            object[] myObjects = new object[6];
-            myObjects[0] = new Class1();
-            myObjects[1] = new Class2();
-            myObjects[2] = "string";
-            myObjects[3] = 32;
-            myObjects[4] = null;
+            
+            List<int> nums = Console.ReadLine()
+                .Split(", ")
+                .Select(int.Parse)
+                .ToList() ;
 
-            for (int i = 0; i < myObjects.Length; i++)
+            List<int> evenIdxNums = new List<int>();
+            List<int> oddIdxNums = new List<int>();
+
+            for (int i = 0; i < nums.Count; i++)
             {
-                string s = myObjects[i] as string;
-
-                Console.Write("{0}: ", i);
-
-                if (s != null)
+                if (i % 2 == 0)
                 {
-                    Console.WriteLine("'" + s + "'");
+                    evenIdxNums.Add(nums[i]);
                 }
-                else
+                else //i % 2 != 0
                 {
-                    Console.WriteLine("not a string");
-                }                
+                    oddIdxNums.Add(nums[i]);
+                }
             }
 
-            Console.ReadKey();
+            oddIdxNums.Reverse();
+
+            Console.Write(string.Join(", ", evenIdxNums));
+            Console.Write(", ");
+            Console.Write(string.Join(", ", oddIdxNums));
         }
     }
 }
+
